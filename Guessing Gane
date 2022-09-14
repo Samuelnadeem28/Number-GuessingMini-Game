@@ -1,0 +1,51 @@
+#     FINAL PROJECT
+import random
+#----CODE START
+def guess():
+    # computer_guess = 3
+    computer_guess = random.choice(range(10))
+    score = 10
+    life = 5
+    clue = []
+
+    while life != 0:
+        try:
+            print("*** ANY NUMBER BETWEEN 1-10 ***")
+            user = int(input('Enter Your Guess Number: '))
+            if user > computer_guess :
+                if 'The number is less than your guess' not in clue :     
+                    print(':::-Your Guess is not Correct, Try again\n')               
+                    print('HINT:- "The number is less than your guess, Try to Subtract"')
+                if 'The number is greater than your guess'  in clue :
+                    clue.remove('')
+            if user < computer_guess :
+                if 'The number is greater than your guess' not in clue :
+                    print(':::-Your Guess is not Correct, Try again\n')
+                    print('HINT:- "The number is greater than your guess, Try to Add"')
+                if 'The number is less than your guess' in clue :                    
+                    clue.remove('')
+            if user == computer_guess :
+                print('Congratulations! Your guess is Correct\n YOU WON :) ')
+                print(f'YOUR HIGH-SCORE IS : {score}')
+                print('THANKS FOR PLAYING')
+                return
+            game_hint = ''.join(f'{val}\n' for val in clue)
+            print(game_hint) 
+            life -= 1
+            score -= 1 
+            print(f'Your remaining Hint: {life}')
+            print('-'*15,'\n')
+        except ValueError :
+            print('Enter a digit number')
+            life -= 1
+            score -= 1
+            print(f'Your remaining Hint: {life}')
+    print('YOU LOSE :( ')
+    print(f'YOUR HIGH-SCORE IS: {score}\n')
+    print('THANKS FOR PLAYING')
+
+
+
+if __name__ == "__main__" :
+    guess()
+#----CODE END
